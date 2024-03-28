@@ -1,35 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
+import { View, Text, StyleSheet, Image } from 'react-native';
+import HomeIcon from '../image/home.svg';
+import BackIcon from '../image/back.svg';
+import styles from '../style/style'; 
 const Header = () => {
   return (
     <View style={styles.header}>
-      <View style={{ width: 390,  marginBottom: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center',margin: 'auto', }}>
-      <View>Back</View>
-      <View><Text style={styles.title}>Home</Text></View>
+       <View style={{ width: 390,  marginBottom: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center',margin: 'auto', }}>
+      <View style={styles.iconContainer}>
+        <Image source={require('../image/back.svg')} style={styles.icon} />
+        <Text>Back</Text>
+      </View>
+      <View style={styles.iconContainer}>
+        <Image source={require('../image/home.svg')} style={styles.icon} />
+        <Text>home</Text>
+      </View>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    height: 60,
-    backgroundColor: '#ccc',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
-    flexDirection: 'row',
-  },
-  title: {
-    color: 'white',
-    fontSize: 18,
-  },
-  text: {
-    color: '#ccc', 
-  },
-});
 
 export default Header;
