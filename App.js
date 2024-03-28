@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Picker,StyleSheet  } from 'react-native';
 import Header from './src/Header';
-import Select from './src/Select';
+import Selectboxswap from './src/Select';
+
 
 export default function App() {
   const [text1, setText1] = useState('');
@@ -42,7 +43,7 @@ export default function App() {
         <Picker.Item label="Chinese" value="cn" />
       </Picker>
       <Text>Selected Value: {selectedValue}</Text>
-      <Select/>
+      <Selectboxswap/>
     </View>
   );
 }

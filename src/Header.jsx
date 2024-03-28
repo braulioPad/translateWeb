@@ -4,9 +4,10 @@ import { View, Text, StyleSheet } from 'react-native';
 const Header = () => {
   return (
     <View style={styles.header}>
+      <View style={{ width: 390,  marginBottom: 10,flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center',margin: 'auto', }}>
       <View>Back</View>
       <View><Text style={styles.title}>Home</Text></View>
-      
+      </View>
     </View>
   );
 };
