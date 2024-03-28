@@ -1,36 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Picker } from "react-native";
+import styles from '../style/style'; 
 
 interface OptionType {
   value: string;
 }
-
-interface FormSelectProps {
-  name: string;
-  options: OptionType[];
-  required?: boolean;
-  style: object;
-}
-
-const FormSelect: React.FC<FormSelectProps> = ({ name, options, required = false, style }) => {
-  return (
-    <View style={style}>
-      <Picker>
-        {options.map((option, index) => (
-          <Picker.Item key={index} label={option.value} value={option.value} />
-        ))}
-      </Picker>
-    </View>
-  );
-};
-
-const Selectbox = ({ options, style }: { options: OptionType[]; style: object }) => {
-  return (
-    <View style={style}>
-      <FormSelect name="importing1" options={options} style={styles.formSelect} />
-    </View>
-  );
-};
 
 const Selectboxswap = () => {
   const [selectOptions1, setSelectOptions1] = useState([
@@ -38,61 +12,61 @@ const Selectboxswap = () => {
     { value: "option 2" },
     { value: "option 3" },
   ]);
-
+  
   const [selectOptions2, setSelectOptions2] = useState([
     { value: "英語" },
     { value: "option 5" },
     { value: "option 6" },
   ]);
+  
+  const [selectedOption1, setSelectedOption1] = useState('');
+  const [selectedOption2, setSelectedOption2] = useState('');
 
   const swapSelects = () => {
     const temp = selectOptions1;
     setSelectOptions1(selectOptions2);
     setSelectOptions2(temp);
+
+    // Update selected values based on new options
+    const newSelectedOption1 = selectOptions2.find(option => option.value === selectedOption1);
+    const newSelectedOption2 = selectOptions1.find(option => option.value === selectedOption2);
+    setSelectedOption1(newSelectedOption1 ? newSelectedOption1.value : '');
+    setSelectedOption2(newSelectedOption2 ? newSelectedOption2.value : '');
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        <Selectbox options={selectOptions1} style={styles.formSelect} />
+        <View style={styles.formSelect}>
+          <Picker
+            selectedValue={selectedOption1}
+            style={{ height: 100, width: 150 }}
+            onValueChange={(itemValue, itemIndex) => setSelectedOption1(itemValue)}
+          >
+            {selectOptions1.map((option, index) => (
+              <Picker.Item key={index} label={option.value} value={option.value} />
+            ))}
+          </Picker>
+          <Text>Selected Value: {selectedOption1}</Text>
+        </View>
         <TouchableOpacity style={styles.button} onPress={swapSelects}>
           <Text style={styles.buttonText}>Click me!</Text>
         </TouchableOpacity>
-        <Selectbox options={selectOptions2} style={styles.formSelect} />
+        <View style={styles.formSelect}>
+          <Picker
+            selectedValue={selectedOption2}
+            style={{ height: 100, width: 150 }}
+            onValueChange={(itemValue, itemIndex) => setSelectedOption2(itemValue)}
+          >
+            {selectOptions2.map((option, index) => (
+              <Picker.Item key={index} label={option.value} value={option.value} />
+            ))}
+          </Picker>
+          <Text>Selected Value: {selectedOption2}</Text>
+        </View>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  innerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  formSelect: {
-    width: 150,
-    height: 100,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10,
-  },
-  button: {
-    backgroundColor: "black",
-    padding: 10,
-    borderRadius: 5,
-    marginLeft: 20,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "bold",
-  },
-});
 
 export default Selectboxswap;

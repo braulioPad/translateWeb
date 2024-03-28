@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import HomeIcon from '../image/home.svg';
 import BackIcon from '../image/back.svg';
 import styles from '../style/style'; 
+
 const Header = () => {
   return (
     <View style={styles.header}>

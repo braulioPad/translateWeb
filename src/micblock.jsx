@@ -7,7 +7,7 @@ const Mic = () => {
   return (
     <View style={styles.Micblock}>
       <View style={styles.iconContainer}>
-        <Image source={require('../image/Mic.svg')} style={styles.icon} />
+        <Image source={require('../image/Mic.svg')} style={styles.Micbg} />
       </View>
     </View>
   );
